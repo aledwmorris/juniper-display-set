@@ -5,7 +5,7 @@ function set(line) {
 if (comment!="") {prdepth("edit",depth-1);print "";print "annotate",str[depth-1],comment;print "top";comment=""};
 prdepth("set",depth);print " "line}
 {sub("^ *","")}
-/^[$#]/ {next}
+/^$|^#/ {next}
 /^\/\* / {sub("^/\\* ","\"");sub(" \\*/$","\"");comment=$0;next}
 /; ## SECRET-DATA/ {sub("; ## SECRET-DATA.*$","")}
 /{$/ {if ($1=="inactive:") inactive=1;s="";for (i=inactive+1;i<NF;i++) s=s" "$i;str[depth++]=substr(s,2);next}
